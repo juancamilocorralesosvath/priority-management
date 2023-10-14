@@ -6,16 +6,7 @@ public class HashTable<K, V> implements IHashTable<K, V> {
 
 // manera de crear un arreglo generico, o una manera de hacerlo.
     private HashNode<K, V>[] table;
-
-    // este nodo "deleted" es mi referencia para saber cuándo
-    // o mejor dicho en qué posición he hecho una eliminación de un
-    // elemento. (para no dejar en ese espacio un valor null).
-    
-    private HashNode<K, V> deleted;
     private int size;
-
-
-
     private static final double KNUTH =  (Math.sqrt(5) - 1) / 2.0;
     //private static final int RADIX_FACTOR = 128;
 
@@ -24,7 +15,6 @@ public class HashTable<K, V> implements IHashTable<K, V> {
         this.size = size;
         table = new HashNode[size];
     }
-
 
     private int hashFunction(K object) {
         // 1. saco el toString del objeto
@@ -57,7 +47,7 @@ public class HashTable<K, V> implements IHashTable<K, V> {
         boolean result = false;
         HashNode<K, V> newNode = new HashNode<>(key, value);
         // CHAINING
-        if (this.table[address] == null || this.table[address] == deleted ){
+        if (this.table[address] == null){
             table[address] = newNode;
             result = true;
         }else{
@@ -79,9 +69,7 @@ public class HashTable<K, V> implements IHashTable<K, V> {
         // me ubico en la posicion del arreglo
         if(this.table[address] != null){
             result =  this.table[address].getValue();
-
         }
-
         return result;
     }
 
@@ -92,58 +80,21 @@ public class HashTable<K, V> implements IHashTable<K, V> {
         V result = null;
 
         // me ubico en la posicion del arreglo
+        // creo que aqui deberia poner un null pointer exception por si la clave que me pasan no se encuentra en el arreglo
         if(this.table[address] != null){
 
             HashNode<K, V> current = this.table[address];
             result =  current.getValue();
 
             if(current.getNext() != null){
-
                 current = current.getNext();
                 current.setPrev(null);
                 this.table[address] = current;
-
             }else {
-
-                this.table[address] = deleted;
-
+                this.table[address] = null;
             }
         }
         return result;
-    }
-
-    public String print(){
-        String msg="";
-
-        if(this.table == null){
-            msg="There aren't task registered";
-        }
-        else{
-            for (int index = 0; index < table.length; index++) {
-                if(this.table[index]==null){
-
-                }else{
-
-                    print(this.table[index]);
-                }
-            }
-        }
-
-        return msg;
-    }
-
-    public String print(HashNode<K, V> current){
-        String msg="";
-
-        V  temp =current.getValue();
-        msg= temp.toString();
-        System.out.println(msg);
-
-        if(current.getNext()!= null){
-            print(current.getNext());
-        }
-        
-        return msg;
     }
 
     public int getSize() {
