@@ -65,7 +65,7 @@ public class Controller {
         String msg = "";
         while (!queue.isEmpty()){
             Manageable manageable = queue.dequeue();
-            msg += "\nID:" + manageable.getKey() + ", " + manageable.getTitle() + ", " + ((manageable instanceof Task) ? "Tarea" : "Recordatorio");
+            msg += "\nID:" + manageable.getKey() + ", " + manageable.getTitle() + ", " + ((manageable instanceof Task) ? "Task" : "Reminder");
             tmp.enqueue(manageable);
         }
         queue = tmp;
@@ -77,7 +77,7 @@ public class Controller {
         String msg = "";
         while (!priorityQueue.isEmpty()){
             PriorityTask manageable = priorityQueue.poll();
-            msg += "\nID:" + manageable.getKey() + ", " + manageable.getTitle() + ", Tarea prioritaria nivel " + ((PriorityTask) manageable).getPriorityLevel() + "";
+            msg += "\nID:" + manageable.getKey() + ", " + manageable.getTitle() + " , priority task level " + ((PriorityTask) manageable).getPriorityLevel() + "";
             tmp.insert(manageable);
         }
         priorityQueue = tmp;

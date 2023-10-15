@@ -1,9 +1,6 @@
 package datastructures;
 
-
 import datastructures.IDatastructures.IHashTable;
-
-import java.util.ArrayList;
 
 public class HashTable<K, V> implements IHashTable<K, V> {
     private HashNode<K, V>[] table;
@@ -16,6 +13,7 @@ public class HashTable<K, V> implements IHashTable<K, V> {
 
     @Override
     public boolean add(K key, V value) {
+        if(key == null) return false;
         int index = getIndex(key);
 
         if (table[index] == null) {

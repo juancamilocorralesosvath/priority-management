@@ -33,12 +33,13 @@ public class Queue<T> implements IQueue<T> {
 
 	@Override
 	public T peek() {
-		if(isEmpty()) throw new NoSuchElementException("Queue underflow");
+		if(isEmpty()) return null;
 		return this.first.item;
 	}
 
 	@Override
 	public void enqueue(T item) {
+		if(item == null) return;
 		Node<T> oldLast = this.last;
 		this.last = new Node<T>();
 		this.last.item = item;
@@ -50,7 +51,7 @@ public class Queue<T> implements IQueue<T> {
 
 	@Override
 	public T dequeue() {
-		if(isEmpty()) throw new NoSuchElementException("Queue underflow");
+		if(isEmpty()) return null;
 		T item = this.first.item;
 		this.first = this.first.next;
 		this.size--;
