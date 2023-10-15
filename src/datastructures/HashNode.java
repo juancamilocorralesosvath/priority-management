@@ -1,44 +1,37 @@
 package datastructures;
 
 public class HashNode<K, V> {
-    private K key;
-    private V value;
+    private final K key;
+    private final V value;
     private HashNode<K, V> next;
-    private HashNode<K, V> prev;
-    public HashNode(){
-    }
-    public HashNode(K key, V value){
+
+    public HashNode(K key, V value) {
         this.key = key;
         this.value = value;
-    }
-
-    public HashNode<K, V> getNext() {
-        return next;
-    }
-
-    public void setNext(HashNode<K, V> next) {
-        this.next = next;
-    }
-    public HashNode<K, V> getPrev(){
-        return this.prev;
-    }
-    public void setPrev(HashNode<K, V> prev){
-        this.prev = prev;
+        this.next = null;
     }
 
     public K getKey() {
         return key;
     }
 
-    public void setKey(K key) {
-        this.key = key;
+    public void setNext(HashNode<K, V> node) {
+        next = node;
     }
 
     public V getValue() {
         return value;
     }
 
-    public void setValue(V value) {
-        this.value = value;
+    public boolean colission(HashNode<K, V> node) {
+        if (next == null) {
+            next = node;
+            return true;
+        } else {
+            return next.colission(node);
+        }
+    }
+    public HashNode<K, V> getNext() {
+        return next;
     }
 }
