@@ -87,11 +87,11 @@ public class Main {
     }
 
     public  void createTask() {
-        System.out.print("Título de la tarea: ");
+        System.out.println("Título de la tarea: ");
         String title = scanner.nextLine();
-        System.out.print("Descripción de la tarea: ");
+        System.out.println("Descripción de la tarea: ");
         String description = scanner.nextLine();
-        System.out.print("Fecha de la tarea (dd/mm/aaaa): ");
+        System.out.println("Fecha de la tarea (dd/mm/aaaa): ");
         String date = scanner.nextLine();
 
         System.out.print("¿Es prioritaria? (Si/No): ");
