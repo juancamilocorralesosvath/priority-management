@@ -55,4 +55,23 @@ public class Queue<T> implements IQueue<T> {
 		if(isEmpty()) this.last = null;
 		return item;
 	}
+	public boolean delete(T item) {
+		if(isEmpty()) throw new NoSuchElementException("Queue underflow");
+		Node<T> current = this.first;
+		Node<T> previous = null;
+		while(current != null) {
+			if(current.item.equals(item)) {
+				if(previous == null) {
+					this.first = current.next;
+				}else {
+					previous.next = current.next;
+				}
+				this.size--;
+				return true;
+			}
+			previous = current;
+			current = current.next;
+		}
+		return false;
+	}
 }

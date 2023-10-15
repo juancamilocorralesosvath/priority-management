@@ -107,5 +107,21 @@ public class MaxHeap<T extends Comparable<T>> implements IHeap<T>{
             index = parent(index);
         }
     }
+    public boolean isEmpty() {
+        return this.heap.isEmpty();
+    }
 
+    public int size() {
+        return this.heap.size();
+    }
+
+    public boolean delete(T value) {
+        int index = this.heap.indexOf(value);
+        if (index == -1) {
+            return false;
+        }
+        this.heap.set(index, this.heap.remove(this.heap.size() - 1));
+        maxHeapify(index);
+        return true;
+    }
 }

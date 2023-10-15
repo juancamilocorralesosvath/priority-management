@@ -7,8 +7,10 @@ public  class Task implements Manageable{
     private String title;
     private String description;
     private Date date;
+    private int key;
 
-    public Task(String title, String description, String dateString) throws ParseException {
+    public Task(int key, String title, String description, String dateString) throws ParseException {
+        this.key = key;
         this.title = title;
         this.description = description;
 
@@ -56,5 +58,13 @@ public  class Task implements Manageable{
     @Override
     public boolean delete() { // todo
         return false;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
     }
 }
