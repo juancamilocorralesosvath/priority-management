@@ -1,3 +1,6 @@
+package testDataStructure;
+
+
 import datastructures.Stack;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;

@@ -5,5 +5,5 @@ public class EntryException extends Exception {
         super(message);
     }
 
-    
+
 }

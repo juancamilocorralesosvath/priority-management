@@ -1,5 +1,6 @@
 package datastructures;
 import java.util.ArrayList;
+
 public class PriorityQueue<K extends Comparable<K>> {
     private MaxHeap<K> maxHeap;
 
@@ -32,3 +33,4 @@ public class PriorityQueue<K extends Comparable<K>> {
         return maxHeap.delete(value);
     }
 }
+

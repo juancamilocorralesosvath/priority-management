@@ -9,12 +9,10 @@ public class Reminder implements Manageable{
     private Date date;
     private int key;
 
-
     public Reminder(int key, String title, String description, String dateString) throws ParseException {
-        this.key = key;
         this.title = title;
         this.description = description;
-
+        this.key = key;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.date = dateFormat.parse(dateString);
     }
@@ -58,7 +56,6 @@ public class Reminder implements Manageable{
         return "Título: " + title + ", Descripción: " + description + ", Fecha: " + formattedDate;
     }
 
-
     @Override
     public boolean edit() { // todo
         return false;
@@ -68,4 +65,6 @@ public class Reminder implements Manageable{
     public boolean delete() { // todo
         return false;
     }
+
+
 }

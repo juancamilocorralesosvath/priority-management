@@ -1,30 +1,30 @@
 package datastructures;
 
+import datastructures.IDatastructures.IHeap;
+
 import java.util.ArrayList;
 
-public class MaxHeap<T extends Comparable<T>> implements IHeap<T>{
+public class MaxHeap<T extends Comparable<T>> implements IHeap<T> {
     private ArrayList<T> heap;
-    private ArrayList<T> list;
 
     public MaxHeap(ArrayList<T> list) {
-        this.list = list;
         this.heap = list;
         buildMaxHeap();
     }
 
     @Override
     public int parent(int index) {
-        return (int) (Math.floor((index + 1) / 2) - 1);
+        return (index - 1) / 2;
     }
 
     @Override
     public int left(int index) {
-        return 2 * (index + 1) - 1;
+        return 2 * index + 1;
     }
 
     @Override
     public int right(int index) {
-        return 2 * (index + 1);
+        return 2 * index + 2;
     }
 
     @Override
@@ -36,20 +36,14 @@ public class MaxHeap<T extends Comparable<T>> implements IHeap<T>{
 
     @Override
     public void insert(T value) {
-        // add element at the end
         this.heap.add(value);
-        int currentIndex = this.heap.size() - 1;
-
-        // keep heap properties
-        // maxHeapify(currentIndex);
-        // no hago un maxHeapify para mantener las propiedades, hago un increaseKey:
-        heapIncreaseKey(currentIndex);
+        heapIncreaseKey(this.heap.size() - 1);
     }
 
     @Override
     public T extractMax() {
         if (this.heap.isEmpty()) {
-            System.out.println("heap its empty");
+            System.out.println("The heap is empty");
             return null;
         }
 
@@ -57,10 +51,8 @@ public class MaxHeap<T extends Comparable<T>> implements IHeap<T>{
             return this.heap.remove(0);
         }
 
-        // extract max element of the heap
         T maxValue = this.heap.get(0);
         this.heap.set(0, this.heap.remove(this.heap.size() - 1));
-        // keep properties of the heap
         maxHeapify(0);
 
         return maxValue;
@@ -82,15 +74,13 @@ public class MaxHeap<T extends Comparable<T>> implements IHeap<T>{
 
         if (currentIndex != largest) {
             swap(currentIndex, largest);
-            currentIndex = largest;
-            // voy bajando
-            maxHeapify(currentIndex);
+            maxHeapify(largest); // Llamada recursiva con el nuevo índice
         }
     }
 
     @Override
     public void buildMaxHeap() {
-        for(int i = (this.list.size()) / 2; i >= 0; i--) {
+        for (int i = this.heap.size() / 2 - 1; i >= 0; i--) {
             maxHeapify(i);
         }
     }
@@ -102,11 +92,12 @@ public class MaxHeap<T extends Comparable<T>> implements IHeap<T>{
 
     @Override
     public void heapIncreaseKey(int index) {
-        while (index > 0 && this.heap.get(parent(index)).compareTo(this.heap.get(index)) < 0){
+        while (index > 0 && this.heap.get(parent(index)).compareTo(this.heap.get(index)) < 0) {
             swap(index, parent(index));
             index = parent(index);
         }
     }
+
     public boolean isEmpty() {
         return this.heap.isEmpty();
     }

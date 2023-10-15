@@ -1,5 +1,10 @@
 package datastructures;
 
+
+import datastructures.IDatastructures.IHashTable;
+
+import java.util.ArrayList;
+
 public class HashTable<K, V> implements IHashTable<K, V> {
     private HashNode<K, V>[] table;
 
@@ -7,16 +12,18 @@ public class HashTable<K, V> implements IHashTable<K, V> {
         table = new HashNode[capacity];
     }
 
+
+
     @Override
     public boolean add(K key, V value) {
         int index = getIndex(key);
 
         if (table[index] == null) {
             table[index] = new HashNode<>(key, value);
+            return true;
         } else {
-            table[index].colission(new HashNode<>(key, value));
+            return table[index].colission(new HashNode<>(key, value));
         }
-        return false;
     }
 
     @Override
@@ -54,9 +61,12 @@ public class HashTable<K, V> implements IHashTable<K, V> {
         return null;
     }
 
+
     private int getIndex(K key) {
         int hashCode = key.hashCode();
         return (hashCode & 0x7FFFFFFF) % table.length;
     }
+
+
 }
 

@@ -1,4 +1,4 @@
-package datastructures;
+package datastructures.IDatastructures;
 
 public interface IHeap<T> {
 

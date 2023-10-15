@@ -1,5 +1,7 @@
 package datastructures;
 
+import datastructures.IDatastructures.IStack;
+
 import java.util.NoSuchElementException;
 
 // LIFO approach

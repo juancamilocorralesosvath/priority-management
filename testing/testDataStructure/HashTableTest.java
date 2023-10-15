@@ -1,6 +1,7 @@
+package testDataStructure;
+
 import datastructures.HashTable;
 import junit.framework.TestCase;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 public class HashTableTest extends TestCase {
@@ -23,9 +24,9 @@ public class HashTableTest extends TestCase {
     public void testDelete() {
         setUp();
         hashtable.add("uno", 1);
-        hashtable.add("dos", 2);
+        hashtable.add("onu", 2);
 
-        assertEquals(Integer.valueOf(1), hashtable.delete("uno"));
+        assertEquals(Integer.valueOf(2), hashtable.delete("onu"));
     }
 
     @Test

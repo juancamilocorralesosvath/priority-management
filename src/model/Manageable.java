@@ -4,5 +4,6 @@ public interface Manageable {
     boolean edit();
     boolean delete();
     String getTitle();
+
     int getKey();
 }

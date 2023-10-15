@@ -1,5 +1,7 @@
 package datastructures;
 
+import datastructures.IDatastructures.IQueue;
+
 import java.util.NoSuchElementException;
 
 // FIFO approach
@@ -7,12 +9,12 @@ public class Queue<T> implements IQueue<T> {
 	private Node<T> first;
 	private Node<T> last;
 	private int size;
-	
+
 	private static class Node<T>{
 		private T item;
 		private Node<T> next;
 	}
-	
+
 	public Queue() {
 		this.first = null;
 		this.last = null;
@@ -55,6 +57,7 @@ public class Queue<T> implements IQueue<T> {
 		if(isEmpty()) this.last = null;
 		return item;
 	}
+
 	public boolean delete(T item) {
 		if(isEmpty()) throw new NoSuchElementException("Queue underflow");
 		Node<T> current = this.first;

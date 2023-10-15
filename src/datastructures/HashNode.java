@@ -24,12 +24,9 @@ public class HashNode<K, V> {
     }
 
     public boolean colission(HashNode<K, V> node) {
-        if (next == null) {
-            next = node;
-            return true;
-        } else {
-            return next.colission(node);
-        }
+        node.setNext(this.next);
+        this.next = node;
+        return true;
     }
     public HashNode<K, V> getNext() {
         return next;

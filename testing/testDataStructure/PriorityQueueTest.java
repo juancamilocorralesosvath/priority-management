@@ -1,3 +1,5 @@
+package testDataStructure;
+
 import datastructures.PriorityQueue;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -22,11 +24,12 @@ public class PriorityQueueTest extends TestCase {
     @Test
     public void testPoll() {
         priorityQueue.insert(5);
+        priorityQueue.insert(123);
         priorityQueue.insert(3);
         priorityQueue.insert(8);
 
+        assertEquals(Integer.valueOf(123), priorityQueue.poll());
         assertEquals(Integer.valueOf(8), priorityQueue.poll());
-        assertEquals(Integer.valueOf(5), priorityQueue.poll());
     }
 
     @Test

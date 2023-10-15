@@ -2,7 +2,7 @@ package model;
 
 import java.text.ParseException;
 
-public class PriorityTask extends  Task implements Comparable<PriorityTask> {
+public class PriorityTask extends Task implements Comparable<PriorityTask> {
 
     private boolean isPriority;
     private int priorityLevel;
@@ -29,6 +29,7 @@ public class PriorityTask extends  Task implements Comparable<PriorityTask> {
     public void setPriorityLevel(int priorityLevel) {
         this.priorityLevel = priorityLevel;
     }
+
     @Override
     public int compareTo(PriorityTask o) {
         return Integer.compare(priorityLevel, o.getPriorityLevel());
